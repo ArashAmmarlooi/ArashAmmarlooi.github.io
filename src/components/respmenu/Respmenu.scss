@@ -1,139 +1,116 @@
-h2 {
-    font-size: 18px;
-    line-height: 34px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    display: block;
-    margin: 0;
-    cursor: pointer;
-    color: #6c6c6a;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.25s ease;
 }
 
-
-
-.navmenu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    height: auto;
-    transition: background 0.35s ease;
-
-    &.navSolid {
-        background: rgba(7, 7, 20, 0.92);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 72px;
-        padding: 0 1.25rem;
-
-        .titleHeader {
-            color: rgba(255, 255, 255, 0.95);
-            font-family: "Syne", sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            border: none;
-            background: none;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .humburger {
-            filter: invert(100%);
-            display: block;
-            cursor: pointer;
-            position: absolute;
-            right: 40px;
-            width: 25px;
-            height: 20px;
-
-        }
-    }
-
+.headerScrolled {
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
 }
 
-
-.submenu {
-    position: relative;
-    overflow: hidden;
-    // display: none;
-    height: 0;
-    margin-left: 21px;
-    transition: all 0.2s ease
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
 }
 
-.subnavli {
-    background-color: #fff;
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
 }
 
-.respul {
-    background-color: rgba(7, 7, 20, 0.98);
-    display: none;
-    margin: 0;
-    padding: 0.5rem 0 1rem;
-    list-style: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.brandName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
 
-    li {
-        position: relative;
-        align-content: center;
-        padding: 0;
-        margin: 0;
-        padding-bottom: 14px;
-        text-decoration: none;
-        padding-top: 14px;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        transition: all 0.2s ease;
-        color: #e8e8f0;
+.brandRole {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #2563eb;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 
-        &:hover {
-            background-color: rgba(124, 92, 255, 0.12);
-        }
+.hamburgerBtn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #0f172a;
+  padding: 8px;
 
-        div {
-            display: flex;
-            height: 100%;
-            justify-content: space-between;
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
 
-            .plus {
-                margin-right: 20px;
-            }
-        }
+.drawer {
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  padding: 0.75rem 1.25rem 1.5rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
 
-        a,
-        span {
-            text-decoration: none;
-            margin-left: 20px;
-            color: #e8e8f0;
-            font-family: "Outfit", sans-serif;
-        }
-    }
+.menuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 
-    .subli {
-        &:hover {
-            background-color: #ffffff;
-        }
-    }
+  li {
+    border-bottom: 1px solid #f1f5f9;
+  }
+}
 
-    li:nth-child(1) {
-        border: none;
-    }
+.drawerLink {
+  display: block;
+  padding: 0.85rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e293b;
+  text-decoration: none;
 
-    li:nth-of-type(1) {
-        animation-delay: 0.5s;
-    }
+  &:hover {
+    color: #2563eb;
+  }
+}
 
-    li:nth-of-type(2) {
-        animation-delay: 0.75s;
-    }
+.actionItem {
+  padding-top: 1rem;
+  border-bottom: none !important;
+}
 
-    li:nth-of-type(3) {
-        animation-delay: 1.0s;
-    }
+.githubDrawerBtn {
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #0f172a;
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-decoration: none;
 }

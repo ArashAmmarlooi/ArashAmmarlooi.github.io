@@ -13,7 +13,7 @@ export default function App() {
   const [navSolid, setNavSolid] = useState(false);
 
   useEffect(() => {
-    document.body.style.background = "#070714";
+    document.body.style.background = "#ffffff";
     document.body.style.margin = "0";
   }, []);
 
@@ -26,7 +26,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setNavSolid(window.scrollY > 48);
+    const onScroll = () => setNavSolid(window.scrollY > 30);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
