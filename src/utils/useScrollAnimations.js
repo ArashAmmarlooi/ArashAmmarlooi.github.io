@@ -57,7 +57,7 @@ export default function useScrollAnimations({
 
     // Reports which panel the viewport is currently sitting on so the arrows
     // and dots can reflect position.
-    let reportedIndex = -1;
+    let reportedIndex = 0;
     const reportPanel = (index) => {
       if (index !== reportedIndex && onActivePanel) {
         reportedIndex = index;
@@ -219,6 +219,15 @@ export default function useScrollAnimations({
             end: () => `+=${getScrollLength()}`,
             invalidateOnRefresh: true,
             anticipatePin: 1,
+            // Settle on a whole slide. Inertia is off so momentum cannot skip
+            // past the neighbouring panel.
+            snap: {
+              snapTo: 1 / Math.max(panels.length - 1, 1),
+              inertia: false,
+              duration: { min: 0.2, max: 0.45 },
+              delay: 0.05,
+              ease: "power2.inOut",
+            },
             onUpdate: (st) => {
               if (onProgress) onProgress(st.progress * 100);
 
@@ -236,6 +245,31 @@ export default function useScrollAnimations({
 
         buildReveals(horizontal);
 
+        // One wheel gesture advances exactly one slide. Further events from
+        // the same gesture are ignored until the slide has settled.
+        let wheelLock = false;
+        const onWheel = (event) => {
+          if (Math.abs(event.deltaY) < 6 && Math.abs(event.deltaX) < 6) return;
+          event.preventDefault();
+          if (wheelLock) return;
+
+          const direction = (event.deltaY || event.deltaX) > 0 ? 1 : -1;
+          const next = Math.min(Math.max(reportedIndex + direction, 0), panels.length - 1);
+          if (next === reportedIndex) return;
+
+          wheelLock = true;
+          const st = horizontal.scrollTrigger;
+          const span = st.end - st.start;
+          window.scrollTo({
+            top: st.start + (span * next) / (panels.length - 1),
+            behavior: "smooth",
+          });
+          window.setTimeout(() => {
+            wheelLock = false;
+          }, 700);
+        };
+        window.addEventListener("wheel", onWheel, { passive: false });
+
         // Translate a section id into the page scroll offset that parks the
         // matching panel at the left edge of the viewport.
         const unregister = registerNavigator((id) => {
@@ -251,7 +285,10 @@ export default function useScrollAnimations({
           return true;
         });
 
-        return () => unregister();
+        return () => {
+          window.removeEventListener("wheel", onWheel);
+          unregister();
+        };
       });
 
       // --- Stacked layout for tablets and phones ---

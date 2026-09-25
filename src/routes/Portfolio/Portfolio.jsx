@@ -13,6 +13,15 @@ const PANELS = [
   { id: "contact", label: "Contact" },
 ];
 
+function breakable(text) {
+  const parts = text.split(/([/@.-])/);
+  return parts.map((part, i) => (
+    <React.Fragment key={`${part}-${i}`}>
+      {part}
+      {/[@/.-]/.test(part) ? <wbr /> : null}
+    </React.Fragment>
+  ));
+}
 const GITHUB_URL = "https://github.com/ArashAmmarlooi";
 const LINKEDIN_URL = "https://www.linkedin.com/in/arash-ammarlooi-12372b147/";
 const LINKEDIN_LABEL = "linkedin.com/in/arash-ammarlooi-12372b147";
@@ -522,7 +531,7 @@ const Portfolio = () => {
                 <IconGithub />
               </div>
               <span className={styles.contactType}>GitHub</span>
-              <h3 className={styles.contactValue}>github.com/ArashAmmarlooi</h3>
+              <h3 className={styles.contactValue}>{breakable("github.com/ArashAmmarlooi")}</h3>
               <p className={styles.contactSub}>Source code, repositories, and contributions.</p>
               <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
                 Visit GitHub &rarr;
@@ -534,7 +543,7 @@ const Portfolio = () => {
                 <IconLinkedin />
               </div>
               <span className={styles.contactType}>LinkedIn</span>
-              <h3 className={styles.contactValue}>{LINKEDIN_LABEL}</h3>
+              <h3 className={styles.contactValue}>{breakable(LINKEDIN_LABEL)}</h3>
               <p className={styles.contactSub}>Professional history, roles, and recommendations.</p>
               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
                 Connect on LinkedIn &rarr;
@@ -546,7 +555,7 @@ const Portfolio = () => {
                 <IconMail />
               </div>
               <span className={styles.contactType}>Email</span>
-              <h3 className={styles.contactValue}>{EMAIL_ADDRESS}</h3>
+              <h3 className={styles.contactValue}>{breakable(EMAIL_ADDRESS)}</h3>
               <p className={styles.contactSub}>Project discussions and interview inquiries.</p>
               <a href={`mailto:${EMAIL_ADDRESS}`} className={styles.contactLink}>
                 Send email &rarr;

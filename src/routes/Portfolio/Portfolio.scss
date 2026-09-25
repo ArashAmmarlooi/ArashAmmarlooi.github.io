@@ -167,16 +167,7 @@ $blue-soft: #eff6ff;
     flex: 0 0 auto;
     width: 100vw;
     height: 100vh;
-    padding: 7rem 5vw 4rem;
-  }
-
-  // Panels built from a row of cards size themselves to their content so the
-  // sideways travel keeps a natural rhythm.
-  .skillsPanel,
-  .servicesPanel,
-  .contactPanel {
-    width: auto;
-    min-width: 100vw;
+    padding: 6.5rem 4vw 5rem;
   }
 }
 
@@ -206,13 +197,15 @@ $blue-soft: #eff6ff;
   font-size: 1rem;
   line-height: 1.6;
   color: $muted;
-  margin: 0;
+  margin: 0 auto;
   max-width: 620px;
 }
 
 .panelHead {
   max-width: 720px;
-  margin-bottom: 2.5rem;
+  width: 100%;
+  margin: 0 auto 2.25rem;
+  text-align: center;
 }
 
 // ---------------------------------------------------------------------------
@@ -479,20 +472,35 @@ $blue-soft: #eff6ff;
 .cardRow,
 .contactRow {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: stretch;
+  gap: 1.25rem;
   width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
+// One slide holds the whole group, centered. Skills is six cards in two
+// rows of three; services and contact are four cards in a single row.
 @media (min-width: 1024px) {
-  .cardRow,
+  .skillsPanel .cardRow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 1020px;
+  }
+
+  .servicesPanel .cardRow,
   .contactRow {
-    display: flex;
-    flex-wrap: nowrap;
-    max-width: none;
-    margin: 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 1160px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .servicesPanel .cardRow,
+  .contactRow {
+    grid-template-columns: repeat(2, minmax(0, 420px));
+    justify-content: center;
   }
 }
 
@@ -506,12 +514,8 @@ $blue-soft: #eff6ff;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-
-  @media (min-width: 1024px) {
-    flex: 0 0 320px;
-    width: 320px;
-  }
 
   &:hover {
     border-color: $line-strong;
@@ -843,8 +847,8 @@ $blue-soft: #eff6ff;
   color: $ink;
   margin: 0 0 0.35rem;
   line-height: 1.35;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .contactSub {
@@ -873,7 +877,7 @@ $blue-soft: #eff6ff;
 .footer {
   max-width: 1200px;
   width: 100%;
-  margin: 3rem auto 0;
+  margin: 1.75rem auto 0;
   padding-top: 1.75rem;
   border-top: 1px solid $line;
   display: flex;
