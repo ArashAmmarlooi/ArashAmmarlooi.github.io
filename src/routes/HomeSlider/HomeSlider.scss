@@ -1,0 +1,519 @@
+.sliderContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(96, 63, 213);
+    z-index: 1;
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  
+  // Slide Transitions - Enter
+  .slideEnterNext {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  
+  .slideEnterPrev {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  
+  .slideEnterActive {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 600ms ease-in-out, opacity 600ms ease-in-out;
+  }
+  
+  // Slide Transitions - Exit
+  .slideExitNext {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .slideExitPrev {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .slideExitActiveNext {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 600ms ease-in-out, opacity 600ms ease-in-out;
+  }
+  
+  .slideExitActivePrev {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 600ms ease-in-out, opacity 600ms ease-in-out;
+  }
+  
+  // Home Slide
+  .homeSlide {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    background: rgb(96, 63, 213);
+  
+    .leftCont {
+      flex: 1;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      z-index: 3;
+  
+      .parag {
+        display: flex;
+        flex-direction: column;
+        color: honeydew;
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        padding-left: 5%;
+        z-index: 4;
+  
+        h1 {
+          font-size: 2.5rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          color: white;
+        }
+  
+        p {
+          margin-top: 1rem;
+          font-size: 1.5rem;
+          font-weight: 400;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          color: white;
+        }
+  
+        .rect {
+          height: 190px;
+          position: absolute;
+          width: 230px;
+          transform: translateX(300px);
+          background-color: #c29dff;
+          border-radius: 10px;
+          opacity: 0.2;
+          z-index: -1;
+        }
+      }
+    }
+  
+    .rightCont {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3;
+  
+      img {
+        width: 400px;
+        height: 70%;
+        max-width: 100%;
+        object-fit: contain;
+        z-index: 4;
+      }
+    }
+  }
+  
+  // Services Slide
+  .servicesSlide {
+    width: 100%;
+    height: 100%;
+    padding: 100px 5% 5%;
+    overflow-y: auto;
+    background: #fff !important;
+    z-index: 3;
+  
+    .servicesTitle {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+      color: #333;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+  
+    .servicesGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+  
+    .serviceCard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      border-radius: 12px;
+      background: #f9f9f9;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e0e0e0;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+  
+      .serviceImage {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        min-height: 250px;
+  
+        img {
+          max-width: 100%;
+          height: auto;
+          object-fit: contain;
+        }
+      }
+  
+      .serviceContent {
+        text-align: center;
+  
+        h3 {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: #333;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #666;
+          line-height: 1.6;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+      }
+    }
+  }
+  
+  // About & Contact Slide
+  .aboutContactSlide {
+    width: 100%;
+    height: 100%;
+    padding: 60px 5% 5%;
+    overflow-y: auto;
+    background: #fff !important;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    z-index: 3;
+  
+    .aboutSection {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+  
+      h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #333;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+  
+    .aboutContent {
+      p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.2rem;
+        color: #444;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+  
+    .contactSection {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      
+      h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #333;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+  
+    // New Flex Container for Contact
+      // New Flex Container for Contact
+  .contactContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; // Align top to bring graphic up
+    justify-content: space-between;
+    gap: 4rem;
+    width: 100%;
+  }
+
+  .contactBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 1rem; // Add slight top padding to align visually with image top
+  }
+
+  .contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+
+    img {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+    }
+
+    .contactInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      p {
+        font-size: 1.1rem;
+        color: #444;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+      }
+    }
+
+    a {
+      font-size: 1.1rem;
+      color: #333;
+      text-decoration: none;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: rgb(96, 63, 213);
+      }
+    }
+  }
+
+  .contactImage {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start; // Align image to top
+    margin-top: -2rem; // Pull image up
+
+    img {
+      max-width: 100%;
+      width: 450px; // Slightly larger
+      height: auto;
+      object-fit: contain;
+    }
+  }
+}
+  // Navigation Buttons
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+    font-weight: 300;
+    line-height: 1;
+  
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+  
+    &:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+  }
+  
+  // When on white background slides, change button colors
+  .whiteBackground {
+    .navButton {
+      background: rgba(96, 63, 213, 0.2);
+      border: 2px solid rgba(96, 63, 213, 0.5);
+      color: rgb(96, 63, 213);
+  
+      &:hover {
+        background: rgba(96, 63, 213, 0.3);
+        border-color: rgba(96, 63, 213, 0.8);
+      }
+    }
+  
+    .dot {
+      border: 2px solid rgba(96, 63, 213, 0.5);
+  
+      &:hover {
+        background: rgba(96, 63, 213, 0.3);
+        border-color: rgba(96, 63, 213, 0.8);
+      }
+    }
+  
+    .activeDot {
+      background: rgb(96, 63, 213);
+      border-color: rgb(96, 63, 213);
+    }
+  }
+  
+  .prevButton {
+    left: 30px;
+  }
+  
+  .nextButton {
+    right: 30px;
+  }
+  
+  // Dots Indicator
+  .dotsContainer {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 100;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  .activeDot {
+    background: white;
+    border-color: white;
+    width: 14px;
+    height: 14px;
+  }
+  
+  // Responsive Design
+  @media (max-width: 882px) {
+    .homeSlide {
+        flex-direction: column;
+        justify-content: center; // Center vertically
+        gap: 40px; // Reduced from 60px
+        padding-top: 80px; // Reduced from 120px
+  
+        .leftCont {
+          flex: 0 0 auto; // Don't take full height
+          
+          .parag {
+            padding-left: 0;
+            text-align: center;
+            align-items: center;
+  
+            h1 {
+              font-size: 2rem;
+              margin-bottom: 0.5rem;
+            }
+  
+            p {
+              font-size: 1.2rem;
+              margin-top: 0.5rem;
+            }
+  
+            .rect {
+              display: none;
+            }
+          }
+        }
+  
+        .rightCont {
+          flex: 0 0 auto;
+          margin-top: 0;
+          
+          img {
+            width: 280px; // Slightly smaller
+            max-height: 40vh; // Ensure it fits
+          }
+        }
+      }
+  
+    .servicesSlide {
+      .servicesGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  
+    .navButton {
+      width: 50px;
+      height: 50px;
+      font-size: 2.5rem;
+    }
+  
+    .prevButton {
+      left: 15px;
+    }
+  
+    .nextButton {
+      right: 15px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .aboutContactSlide {
+        .contactContainer {
+          flex-direction: column-reverse; // Stack vertically on smaller screens, image on top? Or bottom?
+          // Let's keep image on bottom for mobile or top
+          gap: 2rem;
+          align-items: flex-start;
+        }
+    
+        .contactImage {
+          width: 100%;
+          justify-content: center;
+          margin-top: 2rem;
+          
+          img {
+            width: 300px;
+          }
+        }
+      }
+  }

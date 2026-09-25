@@ -1,0 +1,124 @@
+h2 {
+    font-size: 18px;
+    line-height: 34px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    display: block;
+    margin: 0;
+    cursor: pointer;
+    color: #6c6c6a;
+}
+
+
+
+.navmenu {
+    height: 100%;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            line-height: 26px;
+            left: 40px;
+
+            letter-spacing: 1px;
+            position: relative;
+            max-height: 800px;
+            opacity: 1;
+            transform: translate(0, 0);
+            z-index: 2;
+        }
+
+        .humburger {
+            filter: invert(100%);
+            display: block;
+            cursor: pointer;
+            position: absolute;
+            right: 40px;
+            width: 25px;
+            height: 20px;
+
+        }
+    }
+
+}
+
+
+.submenu {
+    position: relative;
+    overflow: hidden;
+    // display: none;
+    height: 0;
+    margin-left: 21px;
+    transition: all 0.2s ease
+}
+
+.subnavli {
+    background-color: #fff;
+}
+
+.respul {
+    background-color: #fff;
+    display: none;
+
+    li {
+        position: relative;
+        align-content: center;
+        padding: 0;
+        margin: 0;
+        padding-bottom: 14px;
+        text-decoration: none;
+        padding-top: 14px;
+        border-top: 1px dotted #dce7eb;
+        transition: all 0.2s ease;
+        color: #6c6c6a;
+
+        &:hover {
+            background-color: #dfdfdf;
+        }
+
+        div {
+            display: flex;
+            height: 100%;
+            justify-content: space-between;
+
+            .plus {
+                margin-right: 20px;
+            }
+        }
+
+        a,
+        span {
+            text-decoration: none;
+            margin-left: 20px;
+
+        }
+    }
+
+    .subli {
+        &:hover {
+            background-color: #ffffff;
+        }
+    }
+
+    li:nth-child(1) {
+        border: none;
+    }
+
+    li:nth-of-type(1) {
+        animation-delay: 0.5s;
+    }
+
+    li:nth-of-type(2) {
+        animation-delay: 0.75s;
+    }
+
+    li:nth-of-type(3) {
+        animation-delay: 1.0s;
+    }
+}
