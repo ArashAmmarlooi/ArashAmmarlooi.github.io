@@ -5,12 +5,14 @@ import { scrollToSection } from "../../utils/scrollTo";
 const LINKS = [
   { id: "hero", label: "Home" },
   { id: "skills", label: "Skills & Stack" },
+  { id: "javascript", label: "JavaScript" },
   { id: "services", label: "Services" },
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
 ];
 
 const GITHUB_URL = "https://github.com/ArashAmmarlooi";
+const LINKEDIN_URL = "https://www.linkedin.com/in/arash-ammarlooi-12372b147/";
 
 const Respmenu = ({ navSolid }) => {
   const [open, setOpen] = useState(false);
@@ -82,6 +84,14 @@ const Respmenu = ({ navSolid }) => {
                 className={styles.githubDrawerBtn}
               >
                 View GitHub
+              </a>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkedinDrawerBtn}
+              >
+                View LinkedIn
               </a>
             </li>
           </ul>

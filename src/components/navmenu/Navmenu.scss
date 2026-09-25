@@ -58,7 +58,7 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.6rem;
 }
 
 .navLink {
@@ -81,23 +81,34 @@
   gap: 0.75rem;
 }
 
-.githubBtn {
+.iconBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+  gap: 0.45rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: #0f172a;
   background-color: #f1f5f9;
   border: 1px solid #e2e8f0;
-  padding: 0.5rem 0.95rem;
+  padding: 0.5rem 0.85rem;
   border-radius: 8px;
   text-decoration: none;
+  white-space: nowrap;
   transition: all 0.2s ease;
 
   &:hover {
     background-color: #e2e8f0;
     color: #0f172a;
+  }
+}
+
+@media (max-width: 1180px) {
+  .iconBtn span {
+    display: none;
+  }
+
+  .navLinks {
+    gap: 1.15rem;
   }
 }
 
