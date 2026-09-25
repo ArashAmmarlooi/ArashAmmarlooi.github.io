@@ -9,6 +9,15 @@ gsap.registerPlugin(ScrollTrigger);
 // decoupled from the hashed class names CSS modules generate.
 const HEADER_OFFSET = 78;
 
+// How much page scrolling it takes to travel the full width of the track.
+// At 1.0 a pixel of scrolling moves the track a pixel, which makes six
+// full-width panels feel endless; 0.55 covers the same ground in roughly one
+// viewport height per panel.
+const TRAVEL_RATIO = 0.55;
+
+// Low scrub keeps the track glued to the wheel. Higher values read as lag.
+const SCRUB = 0.35;
+
 function splitHeadings(scope) {
   scope.querySelectorAll("[data-animate='split']").forEach((el) => {
     if (el.dataset.splitReady === "true") return;
@@ -33,11 +42,28 @@ function splitHeadings(scope) {
  * pinned horizontal track: scrolling down travels to the right. Narrow screens
  * keep a conventional vertical flow with the same reveal animations.
  */
-export default function useScrollAnimations({ scopeRef, trackRef, onProgress }) {
+export default function useScrollAnimations({
+  scopeRef,
+  trackRef,
+  onProgress,
+  onActivePanel,
+}) {
   useEffect(() => {
     const scope = scopeRef.current;
     const track = trackRef.current;
     if (!scope || !track) return undefined;
+
+    const panels = Array.from(track.querySelectorAll("[data-panel]"));
+
+    // Reports which panel the viewport is currently sitting on so the arrows
+    // and dots can reflect position.
+    let reportedIndex = -1;
+    const reportPanel = (index) => {
+      if (index !== reportedIndex && onActivePanel) {
+        reportedIndex = index;
+        onActivePanel(index);
+      }
+    };
 
     splitHeadings(scope);
 
@@ -180,6 +206,7 @@ export default function useScrollAnimations({ scopeRef, trackRef, onProgress }) 
       // --- Sideways layout: scrolling down drives the track to the right ---
       mm.add("(min-width: 1024px)", () => {
         const getDistance = () => Math.max(track.scrollWidth - window.innerWidth, 1);
+        const getScrollLength = () => getDistance() * TRAVEL_RATIO;
 
         const horizontal = gsap.to(track, {
           x: () => -getDistance(),
@@ -187,12 +214,23 @@ export default function useScrollAnimations({ scopeRef, trackRef, onProgress }) 
           scrollTrigger: {
             trigger: scope,
             pin: true,
-            scrub: 1,
+            scrub: SCRUB,
             start: "top top",
-            end: () => `+=${getDistance()}`,
+            end: () => `+=${getScrollLength()}`,
             invalidateOnRefresh: true,
             anticipatePin: 1,
-            onUpdate: (st) => onProgress && onProgress(st.progress * 100),
+            onUpdate: (st) => {
+              if (onProgress) onProgress(st.progress * 100);
+
+              // The panel occupying the left third of the viewport is the
+              // one the visitor is reading.
+              const travelled = st.progress * getDistance() + window.innerWidth * 0.34;
+              let index = 0;
+              for (let i = 0; i < panels.length; i += 1) {
+                if (panels[i].offsetLeft <= travelled) index = i;
+              }
+              reportPanel(index);
+            },
           },
         });
 
@@ -223,6 +261,13 @@ export default function useScrollAnimations({ scopeRef, trackRef, onProgress }) 
         const onScroll = () => {
           const max = document.documentElement.scrollHeight - window.innerHeight;
           if (onProgress) onProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
+
+          const line = window.innerHeight * 0.4;
+          let index = 0;
+          panels.forEach((panel, i) => {
+            if (panel.getBoundingClientRect().top <= line) index = i;
+          });
+          reportPanel(index);
         };
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
@@ -253,5 +298,5 @@ export default function useScrollAnimations({ scopeRef, trackRef, onProgress }) 
       window.clearTimeout(refreshTimer);
       ctx.revert();
     };
-  }, [scopeRef, trackRef, onProgress]);
+  }, [scopeRef, trackRef, onProgress, onActivePanel]);
 }

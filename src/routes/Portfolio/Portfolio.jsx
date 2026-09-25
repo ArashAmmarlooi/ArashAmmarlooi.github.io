@@ -1,7 +1,17 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Portfolio.scss";
 import { scrollToSection } from "../../utils/scrollTo";
 import useScrollAnimations from "../../utils/useScrollAnimations";
+
+// Order matches the panels rendered below; drives the arrows and dots.
+const PANELS = [
+  { id: "hero", label: "Home" },
+  { id: "skills", label: "Stack" },
+  { id: "javascript", label: "JavaScript" },
+  { id: "services", label: "Services" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
+];
 
 const GITHUB_URL = "https://github.com/ArashAmmarlooi";
 const LINKEDIN_URL = "https://www.linkedin.com/in/arash-ammarlooi-12372b147/";
@@ -167,6 +177,7 @@ const Portfolio = () => {
   const trackRef = useRef(null);
   const progressRef = useRef(null);
   const [activeCard, setActiveCard] = useState(null);
+  const [activePanel, setActivePanel] = useState(0);
 
   // Written straight to the DOM node so scroll updates never trigger a re-render.
   const handleProgress = useCallback((value) => {
@@ -175,16 +186,88 @@ const Portfolio = () => {
     }
   }, []);
 
-  useScrollAnimations({ scopeRef, trackRef, onProgress: handleProgress });
+  const handleActivePanel = useCallback((index) => setActivePanel(index), []);
+
+  useScrollAnimations({
+    scopeRef,
+    trackRef,
+    onProgress: handleProgress,
+    onActivePanel: handleActivePanel,
+  });
 
   const go = (e, id) => {
     e.preventDefault();
     scrollToSection(id);
   };
 
+  const goToPanel = useCallback((index) => {
+    const target = PANELS[Math.min(Math.max(index, 0), PANELS.length - 1)];
+    if (target) scrollToSection(target.id);
+  }, []);
+
+  // Arrow keys step through panels, matching the on-screen controls.
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      const tag = e.target.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || e.metaKey || e.ctrlKey) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToPanel(activePanel + 1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPanel(activePanel - 1);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activePanel, goToPanel]);
+
+  const atStart = activePanel === 0;
+  const atEnd = activePanel === PANELS.length - 1;
+
   return (
     <div className={styles.viewport} ref={scopeRef}>
       <div className={styles.progressBar} ref={progressRef} aria-hidden="true" />
+
+      {/* Panel controls: arrows plus a dot per panel */}
+      <button
+        type="button"
+        className={`${styles.navArrow} ${styles.navArrowPrev}`}
+        onClick={() => goToPanel(activePanel - 1)}
+        disabled={atStart}
+        aria-label="Previous section"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        className={`${styles.navArrow} ${styles.navArrowNext}`}
+        onClick={() => goToPanel(activePanel + 1)}
+        disabled={atEnd}
+        aria-label="Next section"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+
+      <nav className={styles.panelDots} aria-label="Section navigation">
+        {PANELS.map((panel, i) => (
+          <button
+            key={panel.id}
+            type="button"
+            className={`${styles.dot} ${i === activePanel ? styles.dotActive : ""}`}
+            onClick={() => goToPanel(i)}
+            aria-label={`Go to ${panel.label}`}
+            aria-current={i === activePanel ? "true" : undefined}
+          >
+            <span className={styles.dotTip}>{panel.label}</span>
+          </button>
+        ))}
+      </nav>
 
       <div className={styles.track} ref={trackRef}>
         {/* ---------------------------------------------------------- HERO */}

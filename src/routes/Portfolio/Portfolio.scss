@@ -36,6 +36,113 @@ $blue-soft: #eff6ff;
   flex-direction: column;
 }
 
+// ---------------------------------------------------------------------------
+// Panel controls
+// ---------------------------------------------------------------------------
+.navArrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid $line;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: $ink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $blue;
+    border-color: $blue;
+    color: #ffffff;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}
+
+.navArrowPrev {
+  left: 1.25rem;
+}
+
+.navArrowNext {
+  right: 1.25rem;
+}
+
+.panelDots {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid $line;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background-color: $line-strong;
+  cursor: pointer;
+  transition: background-color 0.2s ease, width 0.2s ease;
+
+  &:hover {
+    background-color: $blue;
+
+    .dotTip {
+      opacity: 1;
+      transform: translate(-50%, -6px);
+    }
+  }
+}
+
+.dotActive {
+  width: 26px;
+  border-radius: 9999px;
+  background-color: $blue;
+}
+
+.dotTip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  background-color: $ink;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
 .panel {
   position: relative;
   display: flex;
@@ -818,6 +925,13 @@ $blue-soft: #eff6ff;
 // Stacked layout for tablets and phones
 // ---------------------------------------------------------------------------
 @media (max-width: 1023px) {
+  // The stacked layout scrolls normally and the drawer menu covers jumping
+  // between sections, so the track controls would only get in the way.
+  .navArrow,
+  .panelDots {
+    display: none;
+  }
+
   .panel {
     padding: 5rem 1.5rem 3.5rem;
     border-right: none;
