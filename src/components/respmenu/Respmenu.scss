@@ -12,26 +12,36 @@ h2 {
 
 
 .navmenu {
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    height: auto;
+    transition: background 0.35s ease;
+
+    &.navSolid {
+        background: rgba(7, 7, 20, 0.92);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
 
     div {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 80px;
+        height: 72px;
+        padding: 0 1.25rem;
 
-        p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 15px;
-            line-height: 26px;
-            left: 40px;
-
-            letter-spacing: 1px;
-            position: relative;
-            max-height: 800px;
-            opacity: 1;
-            transform: translate(0, 0);
-            z-index: 2;
+        .titleHeader {
+            color: rgba(255, 255, 255, 0.95);
+            font-family: "Syne", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
         }
 
         .humburger {
@@ -63,8 +73,12 @@ h2 {
 }
 
 .respul {
-    background-color: #fff;
+    background-color: rgba(7, 7, 20, 0.98);
     display: none;
+    margin: 0;
+    padding: 0.5rem 0 1rem;
+    list-style: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
     li {
         position: relative;
@@ -74,12 +88,12 @@ h2 {
         padding-bottom: 14px;
         text-decoration: none;
         padding-top: 14px;
-        border-top: 1px dotted #dce7eb;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
         transition: all 0.2s ease;
-        color: #6c6c6a;
+        color: #e8e8f0;
 
         &:hover {
-            background-color: #dfdfdf;
+            background-color: rgba(124, 92, 255, 0.12);
         }
 
         div {
@@ -96,7 +110,8 @@ h2 {
         span {
             text-decoration: none;
             margin-left: 20px;
-
+            color: #e8e8f0;
+            font-family: "Outfit", sans-serif;
         }
     }
 

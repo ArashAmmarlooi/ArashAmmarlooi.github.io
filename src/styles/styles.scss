@@ -1,5 +1,19 @@
-// @import "./_layout.scss";
-// @import "./_variables.scss";
-// @import "./_base.scss";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
 
+body {
+  margin: 0;
+  background: #070714;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}

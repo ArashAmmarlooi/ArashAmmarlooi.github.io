@@ -9,7 +9,7 @@ import App from './App.jsx'
 import Root from "./routes/root.jsx";
 
 // Detect if running on GitHub Pages (production) or local development
-const basename = process.env.NODE_ENV === 'production' ? '/Portfolio' : '';
+const basename = process.env.NODE_ENV === 'production' ? '/index.js/' : '/';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

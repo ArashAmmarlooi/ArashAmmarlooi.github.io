@@ -3,11 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 
+// ... existing code ...
 const devMode = process.env.NODE_ENV !== 'production';
 const isProduction = process.env.NODE_ENV === 'production';
 // GitHub Pages base path - change this to match your repository name
-const publicPath = isProduction ? '/Portfolio/' : '/';
-
+const publicPath = isProduction ? '/index.js/' : '/';
 module.exports = {
   entry: [
     path.resolve(__dirname, "src", "index.jsx"),
@@ -49,14 +49,12 @@ module.exports = {
           },
         ]
       },
+
       {
         test: /\.svg$/,
         use: [
           {
-            loader: 'svg-url-loader',
-            options: {
-              limit: 10000,
-            },
+            loader: 'file-loader',
           },
         ],
       },
@@ -95,7 +93,10 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname + "/src"),
     hot: true,
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: '/',
+      disableDotRule: true,
+    },
     port: 3000
   }
 };
