@@ -2,6 +2,22 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Portfolio.scss";
 import { scrollToSection } from "../../utils/scrollTo";
 import useScrollAnimations from "../../utils/useScrollAnimations";
+import reactLogo from "../../assets/tech/react.svg";
+import nextLogo from "../../assets/tech/nextjs.svg";
+import angularLogo from "../../assets/tech/angularjs.svg";
+import nodeLogo from "../../assets/tech/nodejs.svg";
+import springLogo from "../../assets/tech/spring.svg";
+import djangoLogo from "../../assets/tech/django.svg";
+import fastapiLogo from "../../assets/tech/fastapi.svg";
+import expressLogo from "../../assets/tech/express.svg";
+import postgresLogo from "../../assets/tech/postgresql.svg";
+import mysqlLogo from "../../assets/tech/mysql.svg";
+import mariaLogo from "../../assets/tech/mariadb.svg";
+import mongoLogo from "../../assets/tech/mongodb.svg";
+import linuxLogo from "../../assets/tech/linux.svg";
+import nginxLogo from "../../assets/tech/nginx.svg";
+import apacheLogo from "../../assets/tech/apache.svg";
+import githubLogo from "../../assets/tech/github.svg";
 
 // Order matches the panels rendered below; drives the arrows and dots.
 const PANELS = [
@@ -160,24 +176,48 @@ const SERVICES = [
     title: "Full-Stack Web Development",
     desc: "End-to-end applications with React, Next.js, Angular, Node.js, and Spring Boot.",
     points: ["SPA & server-rendered apps", "Clean component architecture", "Strict TypeScript and testing"],
+    logos: [
+      { src: reactLogo, name: "React" },
+      { src: nextLogo, name: "Next.js" },
+      { src: angularLogo, name: "Angular" },
+      { src: nodeLogo, name: "Node.js" },
+    ],
   },
   {
     number: "02",
     title: "API Architecture & Backends",
     desc: "Scalable services engineered with Spring Boot, Django, FastAPI, and Express.",
     points: ["REST & GraphQL services", "Auth and role-based access", "Microservices integration"],
+    logos: [
+      { src: springLogo, name: "Spring Boot" },
+      { src: djangoLogo, name: "Django" },
+      { src: fastapiLogo, name: "FastAPI" },
+      { src: expressLogo, name: "Express" },
+    ],
   },
   {
     number: "03",
     title: "Database & SQL Engineering",
     desc: "Reliable data layers on PostgreSQL, MySQL, MariaDB, and MongoDB.",
     points: ["Relational schema design", "Query optimization", "Migration strategies"],
+    logos: [
+      { src: postgresLogo, name: "PostgreSQL" },
+      { src: mysqlLogo, name: "MySQL" },
+      { src: mariaLogo, name: "MariaDB" },
+      { src: mongoLogo, name: "MongoDB" },
+    ],
   },
   {
     number: "04",
     title: "DevOps & Linux Deployment",
     desc: "Production rollout on Linux with automated builds and hardened servers.",
     points: ["Bash automation", "Nginx & Apache config", "CI/CD with GitHub"],
+    logos: [
+      { src: linuxLogo, name: "Linux" },
+      { src: nginxLogo, name: "Nginx" },
+      { src: apacheLogo, name: "Apache" },
+      { src: githubLogo, name: "GitHub" },
+    ],
   },
 ];
 
@@ -335,19 +375,22 @@ const Portfolio = () => {
               </div>
             </div>
 
-            <div className={styles.heroBadges} aria-hidden="true">
+            <div className={styles.heroBadges} data-parallax="0.08" aria-hidden="true">
               {[
-                { color: "#0284c7", title: "React & Next.js", sub: "Frontend & TypeScript", speed: "0.10" },
-                { color: "#ea580c", title: "Java Spring Boot", sub: "Enterprise microservices", speed: "0.16" },
-                { color: "#059669", title: "Python & FastAPI", sub: "Django & REST APIs", speed: "0.07" },
-                { color: "#4f46e5", title: "Linux & DevOps", sub: "SQL & server hosting", speed: "0.13" },
+                { color: "#0284c7", title: "React & Next.js", sub: "Frontend & TypeScript", delay: "0s" },
+                { color: "#ea580c", title: "Java Spring Boot", sub: "Enterprise microservices", delay: "-1.1s" },
+                { color: "#059669", title: "Python & FastAPI", sub: "Django & REST APIs", delay: "-2.2s" },
+                { color: "#0369a1", title: "SQL & NoSQL", sub: "PostgreSQL, MySQL, MongoDB", delay: "-0.6s" },
+                { color: "#4f46e5", title: "Linux & DevOps", sub: "Nginx, Apache & hosting", delay: "-1.8s" },
               ].map((b) => (
-                <div key={b.title} className={styles.badgeCard} data-parallax={b.speed}>
+                <div
+                  key={b.title}
+                  className={styles.badgeCard}
+                  style={{ animationDelay: b.delay }}
+                >
                   <span className={styles.badgeDot} style={{ background: b.color }} />
-                  <div>
-                    <strong>{b.title}</strong>
-                    <small>{b.sub}</small>
-                  </div>
+                  <strong>{b.title}</strong>
+                  <small>{b.sub}</small>
                 </div>
               ))}
             </div>
@@ -456,6 +499,11 @@ const Portfolio = () => {
                     <li key={p}>{p}</li>
                   ))}
                 </ul>
+                <div className={styles.logoRow}>
+                  {s.logos.map((logo) => (
+                    <img key={logo.name} src={logo.src} alt={logo.name} title={logo.name} />
+                  ))}
+                </div>
               </div>
             ))}
           </div>

@@ -80,31 +80,32 @@ export default function useScrollAnimations({
         q("[data-animate='fade-up']").forEach((el) => {
           gsap.fromTo(
             el,
-            { y: 42, opacity: 0 },
+            { y: 16, opacity: 0 },
             {
               y: 0,
               opacity: 1,
-              duration: 0.8,
-              ease: "power3.out",
+              duration: 0.32,
+              ease: "power2.out",
               scrollTrigger: { trigger: el, start: edge, containerAnimation: container },
             }
           );
         });
 
+        // Short travel and a brief stagger so a row of cards finishes as the
+        // slide locks in, instead of still rising after it has stopped.
         q("[data-animate='card']").forEach((el, i) => {
           gsap.fromTo(
             el,
-            { y: 54, scale: 0.96, opacity: 0 },
+            { y: 18, opacity: 0 },
             {
               y: 0,
-              scale: 1,
               opacity: 1,
-              duration: 0.85,
-              ease: "power3.out",
-              delay: (i % 4) * 0.06,
+              duration: 0.32,
+              ease: "power2.out",
+              delay: (i % 4) * 0.025,
               scrollTrigger: {
                 trigger: el,
-                start: container ? "left 92%" : "top 92%",
+                start: container ? "left 78%" : "top 88%",
                 containerAnimation: container,
               },
             }
@@ -118,9 +119,9 @@ export default function useScrollAnimations({
             {
               yPercent: 0,
               opacity: 1,
-              duration: 0.75,
-              ease: "power3.out",
-              stagger: 0.04,
+              duration: 0.35,
+              ease: "power2.out",
+              stagger: 0.02,
               scrollTrigger: {
                 trigger: el,
                 start: container ? "left 92%" : "top 90%",
@@ -136,8 +137,8 @@ export default function useScrollAnimations({
             { width: "0%" },
             {
               width: `${parseFloat(el.dataset.meter) || 0}%`,
-              duration: 1.25,
-              ease: "power3.out",
+              duration: 0.55,
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: el,
                 start: container ? "left 92%" : "top 92%",

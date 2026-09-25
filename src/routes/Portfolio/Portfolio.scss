@@ -167,7 +167,8 @@ $blue-soft: #eff6ff;
     flex: 0 0 auto;
     width: 100vw;
     height: 100vh;
-    padding: 6.5rem 4vw 5rem;
+    // Extra bottom inset keeps card rows above the fixed dot navigation.
+    padding: 5.25rem 5.5rem 6.75rem;
   }
 }
 
@@ -204,7 +205,7 @@ $blue-soft: #eff6ff;
 .panelHead {
   max-width: 720px;
   width: 100%;
-  margin: 0 auto 2.25rem;
+  margin: 0 auto 1.5rem;
   text-align: center;
 }
 
@@ -390,50 +391,65 @@ $blue-soft: #eff6ff;
 }
 
 .heroBadges {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 148px);
+  gap: 0.85rem;
+  justify-content: end;
+  align-content: center;
 }
 
 .badgeCard {
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 148px;
+  height: 148px;
   background-color: #ffffff;
   border: 1px solid $line;
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
-  will-change: transform;
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  animation: floatBox 4.8s ease-in-out infinite;
 
-  &:nth-child(2) {
-    margin-left: 2.5rem;
-  }
-
-  &:nth-child(4) {
-    margin-left: 1.75rem;
+  &:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
   }
 
   strong {
     display: block;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 0.92rem;
+    font-weight: 700;
     color: $ink;
+    line-height: 1.25;
+    margin-top: auto;
   }
 
   small {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     color: $muted;
-    margin-top: 2px;
+    margin-top: 0.3rem;
+    line-height: 1.35;
   }
 }
 
 .badgeDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
   flex-shrink: 0;
+}
+
+@keyframes floatBox {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .scrollCue {
@@ -486,13 +502,15 @@ $blue-soft: #eff6ff;
 @media (min-width: 1024px) {
   .skillsPanel .cardRow {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 1020px;
+    width: min(1380px, calc(100vw - 11rem));
+    max-width: none;
   }
 
   .servicesPanel .cardRow,
   .contactRow {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    max-width: 1160px;
+    width: min(1380px, calc(100vw - 11rem));
+    max-width: none;
   }
 }
 
@@ -510,7 +528,7 @@ $blue-soft: #eff6ff;
   background-color: #ffffff;
   border: 1px solid $line;
   border-radius: 14px;
-  padding: 1.6rem;
+  padding: 1.25rem 1.35rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -706,7 +724,7 @@ $blue-soft: #eff6ff;
 
 .servicePoints {
   list-style: none;
-  margin: auto 0 0;
+  margin: 0 0 1rem;
   padding: 0;
 
   li {
@@ -722,6 +740,28 @@ $blue-soft: #eff6ff;
       display: inline-block;
       width: 1em;
     }
+  }
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid #f1f5f9;
+
+  img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badgeCard {
+    animation: none;
   }
 }
 
