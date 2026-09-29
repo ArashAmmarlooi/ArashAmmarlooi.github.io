@@ -5,19 +5,27 @@ import useScrollAnimations from "../../utils/useScrollAnimations";
 import reactLogo from "../../assets/tech/react.svg";
 import nextLogo from "../../assets/tech/nextjs.svg";
 import angularLogo from "../../assets/tech/angularjs.svg";
-import nodeLogo from "../../assets/tech/nodejs.svg";
-import springLogo from "../../assets/tech/spring.svg";
+import typescriptLogo from "../../assets/tech/typescript.svg";
+import pythonLogo from "../../assets/tech/python.svg";
 import djangoLogo from "../../assets/tech/django.svg";
 import fastapiLogo from "../../assets/tech/fastapi.svg";
-import expressLogo from "../../assets/tech/express.svg";
+import pytestLogo from "../../assets/tech/pytest.svg";
+import javaLogo from "../../assets/tech/java.svg";
+import springLogo from "../../assets/tech/spring.svg";
+import hibernateLogo from "../../assets/tech/hibernate.svg";
+import junitLogo from "../../assets/tech/junit.svg";
 import postgresLogo from "../../assets/tech/postgresql.svg";
 import mysqlLogo from "../../assets/tech/mysql.svg";
-import mariaLogo from "../../assets/tech/mariadb.svg";
 import mongoLogo from "../../assets/tech/mongodb.svg";
-import linuxLogo from "../../assets/tech/linux.svg";
-import nginxLogo from "../../assets/tech/nginx.svg";
-import apacheLogo from "../../assets/tech/apache.svg";
+import cassandraLogo from "../../assets/tech/cassandra.svg";
+import dockerLogo from "../../assets/tech/docker.svg";
+import kubernetesLogo from "../../assets/tech/kubernetes.svg";
+import prometheusLogo from "../../assets/tech/prometheus.svg";
 import githubLogo from "../../assets/tech/github.svg";
+import claudeLogo from "../../assets/tech/claude.svg";
+import llmLogo from "../../assets/tech/llm.svg";
+import graphLogo from "../../assets/tech/graph.svg";
+import vectorDbLogo from "../../assets/tech/vectordb.svg";
 
 // Order matches the panels rendered below; drives the arrows and dots.
 const PANELS = [
@@ -173,50 +181,66 @@ const JS_HIGHLIGHTS = [
 const SERVICES = [
   {
     number: "01",
-    title: "Full-Stack Web Development",
-    desc: "End-to-end applications with React, Next.js, Angular, Node.js, and Spring Boot.",
-    points: ["SPA & server-rendered apps", "Clean component architecture", "Strict TypeScript and testing"],
+    title: "Frontend Development",
+    desc: "Interfaces built with React, Next.js, Angular, and TypeScript.",
+    points: ["SPA and server-rendered apps", "Clean component architecture", "Strict TypeScript and testing"],
     logos: [
       { src: reactLogo, name: "React" },
       { src: nextLogo, name: "Next.js" },
       { src: angularLogo, name: "Angular" },
-      { src: nodeLogo, name: "Node.js" },
+      { src: typescriptLogo, name: "TypeScript" },
     ],
   },
   {
     number: "02",
-    title: "API Architecture & Backends",
-    desc: "Scalable services engineered with Spring Boot, Django, FastAPI, and Express.",
-    points: ["REST & GraphQL services", "Auth and role-based access", "Microservices integration"],
+    title: "Backend & API Engineering",
+    desc: "Python and Java APIs with Django, FastAPI, Spring Boot, J2EE, and Hibernate.",
+    points: ["Django, FastAPI, and pytest", "Spring Boot, J2EE, and Hibernate", "JUnit, JPA, and API testing"],
     logos: [
-      { src: springLogo, name: "Spring Boot" },
+      { src: pythonLogo, name: "Python" },
       { src: djangoLogo, name: "Django" },
       { src: fastapiLogo, name: "FastAPI" },
-      { src: expressLogo, name: "Express" },
+      { src: pytestLogo, name: "pytest" },
+      { src: javaLogo, name: "Java" },
+      { src: springLogo, name: "Spring Boot" },
+      { src: hibernateLogo, name: "Hibernate" },
+      { src: junitLogo, name: "JUnit" },
     ],
   },
   {
     number: "03",
-    title: "Database & SQL Engineering",
-    desc: "Reliable data layers on PostgreSQL, MySQL, MariaDB, and MongoDB.",
-    points: ["Relational schema design", "Query optimization", "Migration strategies"],
+    title: "SQL & NoSQL Databases",
+    desc: "Relational SQL plus NoSQL on MongoDB and Cassandra.",
+    points: ["PostgreSQL and MySQL schemas", "MongoDB document stores", "Cassandra and NoSQL modeling"],
     logos: [
       { src: postgresLogo, name: "PostgreSQL" },
       { src: mysqlLogo, name: "MySQL" },
-      { src: mariaLogo, name: "MariaDB" },
       { src: mongoLogo, name: "MongoDB" },
+      { src: cassandraLogo, name: "Cassandra" },
     ],
   },
   {
     number: "04",
-    title: "DevOps & Linux Deployment",
-    desc: "Production rollout on Linux with automated builds and hardened servers.",
-    points: ["Bash automation", "Nginx & Apache config", "CI/CD with GitHub"],
+    title: "Agile Scrum & DevOps",
+    desc: "Scrum delivery with monitoring, Docker, Kubernetes, and GitHub CI/CD.",
+    points: ["Agile Scrum and sprint planning", "Docker and Kubernetes", "Monitoring and GitHub CI/CD"],
     logos: [
-      { src: linuxLogo, name: "Linux" },
-      { src: nginxLogo, name: "Nginx" },
-      { src: apacheLogo, name: "Apache" },
+      { src: dockerLogo, name: "Docker" },
+      { src: kubernetesLogo, name: "Kubernetes" },
+      { src: prometheusLogo, name: "Prometheus" },
       { src: githubLogo, name: "GitHub" },
+    ],
+  },
+  {
+    number: "05",
+    title: "AI Integration",
+    desc: "Claude and LLM features with RAG, knowledge graphs, and vector databases.",
+    points: ["Claude and LLM integration", "Retrieval-augmented generation", "Graphs and vector databases"],
+    logos: [
+      { src: claudeLogo, name: "Claude" },
+      { src: llmLogo, name: "LLMs" },
+      { src: graphLogo, name: "Knowledge graphs" },
+      { src: vectorDbLogo, name: "Vector databases" },
     ],
   },
 ];

@@ -498,7 +498,7 @@ $blue-soft: #eff6ff;
 }
 
 // One slide holds the whole group, centered. Skills is six cards in two
-// rows of three; services and contact are four cards in a single row.
+// rows of three; services is five cards in a single row; contact is four.
 @media (min-width: 1024px) {
   .skillsPanel .cardRow {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -506,7 +506,13 @@ $blue-soft: #eff6ff;
     max-width: none;
   }
 
-  .servicesPanel .cardRow,
+  .servicesPanel .cardRow {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: min(1580px, 100%);
+    max-width: none;
+    gap: 0.85rem;
+  }
+
   .contactRow {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     width: min(1380px, calc(100vw - 11rem));
@@ -515,7 +521,6 @@ $blue-soft: #eff6ff;
 }
 
 @media (min-width: 1024px) and (max-width: 1280px) {
-  .servicesPanel .cardRow,
   .contactRow {
     grid-template-columns: repeat(2, minmax(0, 420px));
     justify-content: center;
@@ -713,6 +718,40 @@ $blue-soft: #eff6ff;
 .servicesPanel {
   background-color: #ffffff;
   border-right: 1px solid $line;
+
+  .serviceCard {
+    padding: 1.05rem 0.9rem 1rem;
+  }
+
+  .serviceNum {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .cardTitle {
+    font-size: 0.98rem;
+  }
+
+  .cardDesc {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin-bottom: 0.75rem;
+  }
+
+  .servicePoints li {
+    font-size: 0.75rem;
+    padding: 0.28rem 0;
+  }
+
+  .logoRow {
+    gap: 0.4rem;
+    padding-top: 0.65rem;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 .serviceNum {
@@ -745,6 +784,7 @@ $blue-soft: #eff6ff;
 
 .logoRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.55rem;
   margin-top: auto;
