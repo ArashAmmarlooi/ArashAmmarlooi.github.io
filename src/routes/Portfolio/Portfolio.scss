@@ -497,8 +497,7 @@ $blue-soft: #eff6ff;
   justify-content: center;
 }
 
-// One slide holds the whole group, centered. Skills is six cards in two
-// rows of three; services is five cards in a single row; contact is four.
+// Skills: five tech cards (3 + 2 on desktop); services: five outcome cards; contact: four.
 @media (min-width: 1024px) {
   .skillsPanel .cardRow {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -618,6 +617,17 @@ $blue-soft: #eff6ff;
 .skillsPanel {
   background-color: #ffffff;
   border-right: 1px solid $line;
+
+  .techCard .logoRow {
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding-top: 0.75rem;
+
+    img {
+      width: 22px;
+      height: 22px;
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -736,6 +746,10 @@ $blue-soft: #eff6ff;
     font-size: 0.8rem;
     line-height: 1.45;
     margin-bottom: 0.75rem;
+  }
+
+  .servicePoints {
+    margin-top: auto;
   }
 
   .servicePoints li {

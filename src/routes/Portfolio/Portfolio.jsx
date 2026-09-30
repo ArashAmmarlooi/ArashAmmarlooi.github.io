@@ -24,8 +24,6 @@ import prometheusLogo from "../../assets/tech/prometheus.svg";
 import githubLogo from "../../assets/tech/github.svg";
 import claudeLogo from "../../assets/tech/claude.svg";
 import llmLogo from "../../assets/tech/llm.svg";
-import graphLogo from "../../assets/tech/graph.svg";
-import vectorDbLogo from "../../assets/tech/vectordb.svg";
 
 // Order matches the panels rendered below; drives the arrows and dots.
 const PANELS = [
@@ -79,10 +77,25 @@ const IconPhone = (props) => (
 
 const TECH_CARDS = [
   {
-    badge: "Frontend & Fullstack",
-    title: "React, Next.js & Angular",
-    desc: "Production interfaces with server rendering, routing, and design systems that scale.",
-    skills: ["React 18", "Next.js", "Angular", "TypeScript", "SCSS", "Redux"],
+    badge: "Frontend",
+    title: "UI frameworks & client tooling",
+    desc: "Languages and libraries used for production web interfaces.",
+    skills: [
+      "React",
+      "Next.js",
+      "Angular",
+      "TypeScript",
+      "JavaScript",
+      "SCSS",
+      "Redux",
+      "Webpack",
+    ],
+    logos: [
+      { src: reactLogo, name: "React" },
+      { src: nextLogo, name: "Next.js" },
+      { src: angularLogo, name: "Angular" },
+      { src: typescriptLogo, name: "TypeScript" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polygon points="12 2 2 7 12 12 22 7 12 2" />
@@ -92,23 +105,43 @@ const TECH_CARDS = [
     ),
   },
   {
-    badge: "JavaScript Runtime",
-    title: "Node.js & API Layers",
-    desc: "High-throughput REST and GraphQL services with resilient async architecture.",
-    skills: ["Node.js", "Express", "Fastify", "GraphQL", "REST", "Jest"],
+    badge: "Python & APIs",
+    title: "Python backends & services",
+    desc: "Frameworks and testing tools for APIs and automation.",
+    skills: ["Python", "Django", "FastAPI", "Flask", "pytest", "REST", "GraphQL", "Celery"],
+    logos: [
+      { src: pythonLogo, name: "Python" },
+      { src: djangoLogo, name: "Django" },
+      { src: fastapiLogo, name: "FastAPI" },
+      { src: pytestLogo, name: "pytest" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-        <line x1="8" y1="21" x2="16" y2="21" />
-        <line x1="12" y1="17" x2="12" y2="21" />
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
       </svg>
     ),
   },
   {
-    badge: "Enterprise Backend",
-    title: "Java & Spring Frameworks",
-    desc: "Secure enterprise services, ORM-backed persistence, and microservice boundaries.",
-    skills: ["Spring Boot", "Spring MVC", "Spring Security", "Hibernate", "JPA", "Maven", "JUnit"],
+    badge: "Java enterprise",
+    title: "Java, Spring & persistence",
+    desc: "Enterprise JVM stack for secure services and data access.",
+    skills: [
+      "Java",
+      "Spring Boot",
+      "J2EE",
+      "Hibernate",
+      "JPA",
+      "Spring Security",
+      "JUnit",
+      "Maven",
+    ],
+    logos: [
+      { src: javaLogo, name: "Java" },
+      { src: springLogo, name: "Spring Boot" },
+      { src: hibernateLogo, name: "Hibernate" },
+      { src: junitLogo, name: "JUnit" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
@@ -120,22 +153,25 @@ const TECH_CARDS = [
     ),
   },
   {
-    badge: "Python Ecosystem",
-    title: "Django, FastAPI & Flask",
-    desc: "Rapid application development, async gateways, and automation pipelines.",
-    skills: ["Django", "FastAPI", "Flask", "Celery", "Automation", "Data Processing"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
-  },
-  {
-    badge: "Data & Storage",
-    title: "SQL Databases & Administration",
-    desc: "Schema architecture, query tuning, migrations, and transactional integrity.",
-    skills: ["PostgreSQL", "MySQL", "MariaDB", "Indexing", "MongoDB", "Data Engineering"],
+    badge: "Data stores",
+    title: "SQL & NoSQL databases",
+    desc: "Relational engines and document or wide-column stores.",
+    skills: [
+      "PostgreSQL",
+      "MySQL",
+      "SQL",
+      "MongoDB",
+      "Cassandra",
+      "NoSQL",
+      "Indexing",
+      "Migrations",
+    ],
+    logos: [
+      { src: postgresLogo, name: "PostgreSQL" },
+      { src: mysqlLogo, name: "MySQL" },
+      { src: mongoLogo, name: "MongoDB" },
+      { src: cassandraLogo, name: "Cassandra" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <ellipse cx="12" cy="5" rx="9" ry="3" />
@@ -145,10 +181,27 @@ const TECH_CARDS = [
     ),
   },
   {
-    badge: "Infrastructure & CI/CD",
-    title: "DevOps & Linux Deployment",
-    desc: "Server provisioning, hardened remote access, reverse proxies, and releases.",
-    skills: ["Linux", "Bash", "Nginx", "Apache", "CI/CD", "Git & GitHub", "SSH"],
+    badge: "Platform & AI",
+    title: "DevOps, delivery & AI tooling",
+    desc: "Containers, observability, CI/CD, and LLM integration tech.",
+    skills: [
+      "Docker",
+      "Kubernetes",
+      "Prometheus",
+      "GitHub Actions",
+      "Linux",
+      "Claude",
+      "LLMs",
+      "RAG",
+    ],
+    logos: [
+      { src: dockerLogo, name: "Docker" },
+      { src: kubernetesLogo, name: "Kubernetes" },
+      { src: prometheusLogo, name: "Prometheus" },
+      { src: githubLogo, name: "GitHub" },
+      { src: claudeLogo, name: "Claude" },
+      { src: llmLogo, name: "LLMs" },
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
@@ -181,66 +234,52 @@ const JS_HIGHLIGHTS = [
 const SERVICES = [
   {
     number: "01",
-    title: "Frontend Development",
-    desc: "Interfaces built with React, Next.js, Angular, and TypeScript.",
-    points: ["SPA and server-rendered apps", "Clean component architecture", "Strict TypeScript and testing"],
-    logos: [
-      { src: reactLogo, name: "React" },
-      { src: nextLogo, name: "Next.js" },
-      { src: angularLogo, name: "Angular" },
-      { src: typescriptLogo, name: "TypeScript" },
+    title: "Frontend delivery",
+    desc: "Ship responsive product UI from wireframes to production-ready pages.",
+    points: [
+      "Build SPAs and server-rendered experiences",
+      "Component libraries and reusable design patterns",
+      "Performance, accessibility, and cross-browser QA",
     ],
   },
   {
     number: "02",
-    title: "Backend & API Engineering",
-    desc: "Python and Java APIs with Django, FastAPI, Spring Boot, J2EE, and Hibernate.",
-    points: ["Django, FastAPI, and pytest", "Spring Boot, J2EE, and Hibernate", "JUnit, JPA, and API testing"],
-    logos: [
-      { src: pythonLogo, name: "Python" },
-      { src: djangoLogo, name: "Django" },
-      { src: fastapiLogo, name: "FastAPI" },
-      { src: pytestLogo, name: "pytest" },
-      { src: javaLogo, name: "Java" },
-      { src: springLogo, name: "Spring Boot" },
-      { src: hibernateLogo, name: "Hibernate" },
-      { src: junitLogo, name: "JUnit" },
+    title: "Backend & API delivery",
+    desc: "Design and implement services that power your product and integrations.",
+    points: [
+      "REST and GraphQL APIs with auth and validation",
+      "Business logic, workflows, and third-party integrations",
+      "Automated tests and stable release-ready backends",
     ],
   },
   {
     number: "03",
-    title: "SQL & NoSQL Databases",
-    desc: "Relational SQL plus NoSQL on MongoDB and Cassandra.",
-    points: ["PostgreSQL and MySQL schemas", "MongoDB document stores", "Cassandra and NoSQL modeling"],
-    logos: [
-      { src: postgresLogo, name: "PostgreSQL" },
-      { src: mysqlLogo, name: "MySQL" },
-      { src: mongoLogo, name: "MongoDB" },
-      { src: cassandraLogo, name: "Cassandra" },
+    title: "Database engineering",
+    desc: "Model and maintain data layers that stay fast, consistent, and evolvable.",
+    points: [
+      "Relational schema design and SQL tuning",
+      "Document and NoSQL modeling for scale-out workloads",
+      "Migrations, backups, and production data hygiene",
     ],
   },
   {
     number: "04",
-    title: "Agile Scrum & DevOps",
-    desc: "Scrum delivery with monitoring, Docker, Kubernetes, and GitHub CI/CD.",
-    points: ["Agile Scrum and sprint planning", "Docker and Kubernetes", "Monitoring and GitHub CI/CD"],
-    logos: [
-      { src: dockerLogo, name: "Docker" },
-      { src: kubernetesLogo, name: "Kubernetes" },
-      { src: prometheusLogo, name: "Prometheus" },
-      { src: githubLogo, name: "GitHub" },
+    title: "Agile delivery & DevOps",
+    desc: "Run Scrum cadences and get code safely from commit to monitored production.",
+    points: [
+      "Sprint planning, demos, and cross-team coordination",
+      "Containerized builds and Kubernetes-style deployments",
+      "CI/CD pipelines, observability, and incident-ready ops",
     ],
   },
   {
     number: "05",
-    title: "AI Integration",
-    desc: "Claude and LLM features with RAG, knowledge graphs, and vector databases.",
-    points: ["Claude and LLM integration", "Retrieval-augmented generation", "Graphs and vector databases"],
-    logos: [
-      { src: claudeLogo, name: "Claude" },
-      { src: llmLogo, name: "LLMs" },
-      { src: graphLogo, name: "Knowledge graphs" },
-      { src: vectorDbLogo, name: "Vector databases" },
+    title: "AI product integration",
+    desc: "Add practical AI features tied to your domain data—not generic chat widgets.",
+    points: [
+      "LLM features grounded in your content and APIs",
+      "RAG search and knowledge-base assistants",
+      "Graph and vector-backed answers you can trust in prod",
     ],
   },
 ];
@@ -431,13 +470,12 @@ const Portfolio = () => {
         {/* -------------------------------------------------------- SKILLS */}
         <section id="skills" className={`${styles.panel} ${styles.skillsPanel}`} data-panel>
           <div className={styles.panelHead}>
-            <span className={styles.pretitle}>Core competencies</span>
+            <span className={styles.pretitle}>Technologies</span>
             <h2 className={styles.panelTitle} data-animate="split">
-              Technology stack and frameworks
+              Stack I work with
             </h2>
             <p className={styles.panelDesc} data-animate="fade-up">
-              Frontend frameworks, enterprise Java, modern Python, relational databases, and
-              Linux server deployment.
+              Frameworks, languages, databases, and platforms I use day to day on real projects.
             </p>
           </div>
 
@@ -461,6 +499,13 @@ const Portfolio = () => {
                     </span>
                   ))}
                 </div>
+                {card.logos?.length ? (
+                  <div className={styles.logoRow}>
+                    {card.logos.map((logo) => (
+                      <img key={logo.name} src={logo.src} alt={logo.name} title={logo.name} />
+                    ))}
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
@@ -506,10 +551,14 @@ const Portfolio = () => {
         {/* ------------------------------------------------------ SERVICES */}
         <section id="services" className={`${styles.panel} ${styles.servicesPanel}`} data-panel>
           <div className={styles.panelHead}>
-            <span className={styles.pretitle}>What I provide</span>
+            <span className={styles.pretitle}>What I deliver</span>
             <h2 className={styles.panelTitle} data-animate="split">
-              Services and architecture delivery
+              Services for your product
             </h2>
+            <p className={styles.panelDesc} data-animate="fade-up">
+              What I take on for teams: product UI, backend systems, data layers, releases, and
+              practical AI features—described as work, not as a tool list.
+            </p>
           </div>
 
           <div className={styles.cardRow}>
@@ -523,11 +572,6 @@ const Portfolio = () => {
                     <li key={p}>{p}</li>
                   ))}
                 </ul>
-                <div className={styles.logoRow}>
-                  {s.logos.map((logo) => (
-                    <img key={logo.name} src={logo.src} alt={logo.name} title={logo.name} />
-                  ))}
-                </div>
               </div>
             ))}
           </div>
